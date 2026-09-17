@@ -3192,7 +3192,7 @@ ParseQualifiedString(
 	while ((c = In[(*Start)++]) != RightQualifier) 
 		; // find ']'
 	j = (*Start) - 2;
-	strncpy((char *)Out, (const char*)(In+i), j-i+1);
+	_rtw_memcpy(Out, In+i, j-i+1);
 
 	return _TRUE;
 }

@@ -3932,7 +3932,7 @@ static int rtw_wx_set_enc_ext(struct net_device *dev,
 		goto exit;
 	}
 
-	strncpy((char *)param->u.crypt.alg, alg_name, IEEE_CRYPT_ALG_NAME_LEN);
+	strscpy((char *)param->u.crypt.alg, alg_name, IEEE_CRYPT_ALG_NAME_LEN);
 
 	if (pext->ext_flags & IW_ENCODE_EXT_SET_TX_KEY)
 	{
@@ -7120,8 +7120,7 @@ static int rtw_rereg_nd_name(struct net_device *dev,
 #endif
 		reg_ifname = padapter->registrypriv.if2name;
 
-		strncpy(rereg_priv->old_ifname, reg_ifname, IFNAMSIZ);
-		rereg_priv->old_ifname[IFNAMSIZ-1] = 0;
+		strscpy(rereg_priv->old_ifname, reg_ifname, IFNAMSIZ);
 	}
 
 	//DBG_871X("%s wrqu->data.length:%d\n", __FUNCTION__, wrqu->data.length);
@@ -7147,8 +7146,7 @@ static int rtw_rereg_nd_name(struct net_device *dev,
 		//rtw_ips_mode_req(&padapter->pwrctrlpriv, rereg_priv->old_ips_mode);
 	}
 
-	strncpy(rereg_priv->old_ifname, new_ifname, IFNAMSIZ);
-	rereg_priv->old_ifname[IFNAMSIZ-1] = 0;
+	strscpy(rereg_priv->old_ifname, new_ifname, IFNAMSIZ);
 	
 	if(_rtw_memcmp(new_ifname, "disable%d", 9) == _TRUE) {
 
