@@ -1770,7 +1770,7 @@ phydm_fw_trace_handler(
 		return;
 	}
 
-	strncpy((char *)&(pDM_Odm->fw_debug_trace[pDM_Odm->c2h_cmd_start]), (char *)&CmdBuf[1], (CmdLen-1));
+	ODM_MoveMemory(pDM_Odm, &(pDM_Odm->fw_debug_trace[pDM_Odm->c2h_cmd_start]), &CmdBuf[1], (CmdLen-1));
 	pDM_Odm->c2h_cmd_start += (CmdLen - 1);
 	pDM_Odm->fw_buff_is_enpty = FALSE;	
 	
